@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIVA - Layanan Streaming Drama Premium Tanpa Gangguan</title>
+  <!-- Meta tags for SEO -->
+  <meta name="description" content="Nonton drama Asia terbaik tanpa iklan dengan resolusi 4K Ultra HD di VIVA. Dapatkan akses eksklusif dan download offline. Coba gratis sekarang!">
+  <meta name="keywords" content="streaming drama, drama korea, drakor, nonton tanpa iklan, VIVA premium, drama sub indo">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#070B19',      /* Deep Navy Background */
+              darker: '#040710',    /* Darker Navy for sections/footers */
+              card: '#0F172A',      /* Slate-900 for cards */
+              cyan: '#22D3EE',      /* Cyan Accent */
+              yellow: '#FACC15',    /* Yellow Accent */
+              teal: '#14B8A6',      /* Teal Accent */
+            }
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 25px -5px rgba(34, 211, 238, 0.3)',
+            'glow-yellow': '0 0 25px -5px rgba(250, 204, 21, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #070B19;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+    
+    /* Animation for floating elements */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(-1deg); }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-slow {
+      animation: float-reverse 8s ease-in-out infinite;
+    }
+
+    /* Glow backdrop styles */
+    .glow-orb {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 9999px;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-brand-dark relative">
+
+  <!-- Background Glowing Orbs -->
+  <div class="glow-orb bg-cyan-400 top-[-100px] left-[-100px]"></div>
+  <div class="glow-orb bg-yellow-400 top-[600px] right-[-150px]"></div>
+  <div class="glow-orb bg-cyan-400 bottom-[800px] left-[-200px]"></div>
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50 backdrop-blur-xl bg-brand-dark/80 border-b border-slate-800/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-1 focus:outline-none">
+        <span class="text-3xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan to-brand-yellow">VIVA</span>
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-yellow"></span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+        <a href="#" class="text-brand-cyan hover:text-white transition-colors duration-200">Beranda</a>
+        <a href="#fitur" class="hover:text-brand-cyan transition-colors duration-200">Fitur</a>
+        <a href="#katalog" class="hover:text-brand-cyan transition-colors duration-200">Katalog</a>
+        <a href="#paket" class="hover:text-brand-cyan transition-colors duration-200">Paket Premium</a>
+        <a href="#faq" class="hover:text-brand-cyan transition-colors duration-200">FAQ</a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="#login" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-200">Masuk</a>
+        <a href="#paket" class="bg-brand-cyan hover:bg-cyan-400 text-brand-dark px-6 py-2.5 rounded-full font-bold text-xs tracking-wider transition-all duration-300 shadow-glow-cyan hover:shadow-cyan-400/40 transform hover:-translate-y-0.5">COBA GRATIS</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none p-2" aria-label="Menu Utama">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7"></path>
+            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-brand-dark/95 backdrop-blur-2xl transition-all duration-300">
+      <div class="px-6 py-6 space-y-4 flex flex-col text-base font-semibold">
+        <a href="#" class="text-brand-cyan py-2 border-b border-slate-800/50">Beranda</a>
+        <a href="#fitur" class="text-slate-300 hover:text-white py-2 border-b border-slate-800/50">Fitur</a>
+        <a href="#katalog" class="text-slate-300 hover:text-white py-2 border-b border-slate-800/50">Katalog</a>
+        <a href="#paket" class="text-slate-300 hover:text-white py-2 border-b border-slate-800/50">Paket Premium</a>
+        <a href="#faq" class="text-slate-300 hover:text-white py-2 border-b border-slate-800/50">FAQ</a>
+        <div class="pt-4 flex flex-col space-y-3">
+          <a href="#login" class="text-center text-slate-300 hover:text-white py-2 font-bold">Masuk</a>
+          <a href="#paket" class="bg-brand-cyan hover:bg-cyan-400 text-brand-dark text-center py-3 rounded-full font-bold shadow-glow-cyan">COBA GRATIS</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-20 md:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10">
+    <!-- Hero Left -->
+    <div class="lg:col-span-7 flex flex-col justify-center text-left">
+      <div class="inline-flex items-center self-start border border-slate-700 bg-slate-900/50 backdrop-blur-md rounded-full px-4 py-1.5 text-xs font-semibold text-slate-300 mb-6 uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-brand-cyan inline-block mr-2.5 animate-ping"></span> 
+        Drama Streaming Tanpa Gangguan
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-6 text-white">
+        Bebaskan Menontonmu.<br>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan to-emerald-400 font-extrabold">Nikmati Drama Terbaik</span><br>
+        <span class="text-brand-yellow font-extrabold">Tanpa Gangguan.</span>
+      </h1>
+      <p class="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed max-w-xl">
+        Lelah dengan iklan yang mengganggu keseruan menonton drama? Apalagi saat gambar terlihat buram dan kuota boros. VIVA hadir sebagai solusinya, memberikan pengalaman nonton premium tanpa iklan dengan kualitas bioskop.
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+        <a href="#paket" class="bg-brand-yellow hover:bg-yellow-400 text-brand-dark px-8 py-4 rounded-xl font-extrabold text-sm tracking-wide transition-all duration-300 shadow-glow-yellow hover:shadow-yellow-400/40 flex items-center justify-center transform hover:-translate-y-0.5">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          Mulai Nonton Premium
+        </a>
+        <a href="#katalog" class="border border-slate-600 hover:border-slate-400 bg-slate-900/40 hover:bg-slate-800/50 text-white px-8 py-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 flex items-center justify-center transform hover:-translate-y-0.5">
+          Jelajahi Katalog
+        </a>
+      </div>
+      
+      <!-- Trust Indicators -->
+      <div class="flex flex-wrap gap-y-2 gap-x-6 text-xs sm:text-sm text-slate-400">
+        <span class="flex items-center">
+          <svg class="w-4 h-4 text-brand-cyan mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+          Uji Coba 7 Hari Gratis
+        </span>
+        <span class="flex items-center">
+          <svg class="w-4 h-4 text-brand-yellow mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+          </svg>
+          Tanpa Kontrak Mengikat
+        </span>
+      </div>
+    </div>
+    
+    <!-- Hero Right (Floating Card Stack Illustration) -->
+    <div class="lg:col-span-5 relative flex justify-center items-center mt-12 lg:mt-0 min-h-[420px]">
+      
+      <!-- Back Card 2 (Deep Background) -->
+      <div class="absolute w-72 h-[340px] bg-indigo-950/40 rounded-2xl border border-indigo-500/20 shadow-2xl transform -rotate-12 translate-x-[-40px] translate-y-[-10px] scale-90 opacity-40 blur-[1px]"></div>
+      
+      <!-- Back Card 1 (Mid Ground) -->
+      <div class="absolute w-72 h-[340px] bg-slate-900/60 rounded-2xl border border-slate-700/40 shadow-2xl transform rotate-6 translate-x-[30px] translate-y-[10px] scale-95 opacity-60"></div>
+      
+      <!-- Front Card (Hero Foreground Element with Float Animation) -->
+      <div class="animate-float relative w-76 sm:w-80 h-[380px] bg-gradient-to-br from-slate-900 via-brand-dark to-slate-950 rounded-2xl border border-slate-700/80 shadow-2xl flex flex-col justify-between p-6 overflow-hidden group" style="box-shadow: 0 0 50px rgba(34, 211, 238, 0.15);">
+        <!-- Diagonal Accent Glow -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/20 rounded-full blur-2xl group-hover:bg-brand-cyan/35 transition-all duration-500"></div>
+        
+        <!-- Premium Badge -->
+        <div class="flex justify-between items-start z-10">
+          <span class="bg-gradient-to-r from-brand-cyan to-brand-teal text-brand-dark text-xs font-black px-3 py-1.5 rounded-lg tracking-wider shadow-md">
+            4K ULTRA HD
+          </span>
+          <div class="w-8 h-8 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-brand-yellow">
+            👑
+          </div>
+        </div>
+        
+        <!-- Live Play Indicator Grid Backdrop mockup -->
+        <div class="absolute inset-x-0 top-1/4 bottom-1/4 flex justify-center items-center opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+          <svg class="w-24 h-24 text-brand-cyan" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+          </svg>
+        </div>
+
+        <!-- Details Info bottom -->
+        <div class="z-10 bg-slate-950/60 backdrop-blur-md p-4 rounded-xl border border-slate-800">
+          <p class="text-xs text-brand-cyan font-bold tracking-widest uppercase mb-1">Eksklusif di VIVA</p>
+          <h3 class="text-xl font-extrabold text-white mb-2 tracking-tight">VIVA Premium Experience</h3>
+          
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1">
+              <span class="text-brand-yellow text-sm">★</span>
+              <span class="text-brand-yellow text-sm">★</span>
+              <span class="text-brand-yellow text-sm">★</span>
+              <span class="text-brand-yellow text-sm">★</span>
+              <span class="text-brand-yellow text-sm">★</span>
+              <span class="text-xs text-slate-300 ml-1 font-semibold">4.9 (1.2jt+)</span>
+            </div>
+            <span class="text-[10px] text-slate-400 font-semibold bg-slate-900 border border-slate-700 px-2 py-0.5 rounded">Active</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Small Floating Sub-Card element -->
+      <div class="animate-float-slow absolute bottom-2 right-4 bg-brand-dark/90 border border-slate-700/80 p-3 rounded-xl shadow-lg flex items-center space-x-3 max-w-[190px] z-20">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-cyan to-brand-teal flex items-center justify-center font-bold text-brand-dark text-xs">
+          ▶
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[10px] text-brand-cyan font-bold">SEDANG POPULER</p>
+          <p class="text-xs font-bold text-white truncate">The Seoul Chronicle</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FITUR SECTION -->
+  <section id="fitur" class="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 z-10 border-t border-slate-900/60">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-block text-xs font-bold text-brand-cyan tracking-widest uppercase mb-3 bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/20">
+        Fitur Unggulan
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Maksimalkan Waktu Luang Anda Dengan <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan to-emerald-400">Fitur Unggulan</span>
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg">
+        Ubah ruang bersantai Anda menjadi bioskop privat yang mewah. Bebaskan diri dari segala hambatan menonton drama tradisional.
+      </p>
+    </div>
+    
+    <!-- Feature Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Card 1 -->
+      <div class="group bg-slate-900/40 hover:bg-slate-900/70 border border-slate-800/80 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between h-full relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-24 h-24 bg-brand-cyan/5 rounded-full blur-xl group-hover:bg-brand-cyan/10 transition-colors"></div>
+        <div>
+          <!-- Icon SVG (No Ads) -->
+          <div class="w-12 h-12 rounded-xl bg-slate-800/80 group-hover:bg-brand-cyan/20 flex items-center justify-center text-brand-cyan mb-6 border border-slate-700/60 group-hover:border-brand-cyan/40 transition-colors duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+            </svg>
+          </div>
+          <h3 class="font-extrabold text-white text-lg mb-3">Nonton Tanpa Iklan</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Nikmati drama favorit Anda sepenuhnya tanpa ada gangguan iklan di tengah-tengah keseruan adegan klimaks.
+          </p>
+        </div>
+        <div class="mt-6 flex items-center text-xs text-brand-cyan font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          Selengkapnya 
+          <svg class="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="group bg-slate-900/40 hover:bg-slate-900/70 border border-slate-800/80 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between h-full relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-24 h-24 bg-brand-cyan/5 rounded-full blur-xl group-hover:bg-brand-cyan/10 transition-colors"></div>
+        <div>
+          <!-- Icon SVG (Ultra HD Video) -->
+          <div class="w-12 h-12 rounded-xl bg-slate-800/80 group-hover:bg-brand-cyan/20 flex items-center justify-center text-brand-cyan mb-6 border border-slate-700/60 group-hover:border-brand-cyan/40 transition-colors duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="font-extrabold text-white text-lg mb-3">Kualitas Video Jernih</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Tayangan jernih tiada tanding hingga resolusi 4K UHD. Ucapkan selamat tinggal pada resolusi pecah dan buram.
+          </p>
+        </div>
+        <div class="mt-6 flex items-center text-xs text-brand-cyan font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          Selengkapnya 
+          <svg class="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="group bg-slate-900/40 hover:bg-slate-900/70 border border-slate-800/80 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between h-full relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-24 h-24 bg-brand-cyan/5 rounded-full blur-xl group-hover:bg-brand-cyan/10 transition-colors"></div>
+        <div>
+          <!-- Icon SVG (Download & Offline) -->
+          <div class="w-12 h-12 rounded-xl bg-slate-800/80 group-hover:bg-brand-cyan/20 flex items-center justify-center text-brand-cyan mb-6 border border-slate-700/60 group-hover:border-brand-cyan/40 transition-colors duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+          </div>
+          <h3 class="font-extrabold text-white text-lg mb-3">Download & Offline</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Simpan drama pilihan langsung ke perangkat Anda. Hemat kuota dan nonton kapan saja tanpa jaringan internet.
+          </p>
+        </div>
+        <div class="mt-6 flex items-center text-xs text-brand-cyan font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          Selengkapnya 
+          <svg class="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="group bg-slate-900/40 hover:bg-slate-900/70 border border-slate-800/80 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between h-full relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-24 h-24 bg-brand-cyan/5 rounded-full blur-xl group-hover:bg-brand-cyan/10 transition-colors"></div>
+        <div>
+          <!-- Icon SVG (Exclusive Early Access) -->
+          <div class="w-12 h-12 rounded-xl bg-slate-800/80 group-hover:bg-brand-cyan/20 flex items-center justify-center text-brand-cyan mb-6 border border-slate-700/60 group-hover:border-brand-cyan/40 transition-colors duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+            </svg>
+          </div>
+          <h3 class="font-extrabold text-white text-lg mb-3">Akses Awal Eksklusif</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Jadilah yang pertama menyaksikan episode drama terbaru yang ditayangkan serentak secara global.
+          </p>
+        </div>
+        <div class="mt-6 flex items-center text-xs text-brand-cyan font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          Selengkapnya 
+          <svg class="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- KATALOG SECTION -->
+  <section id="katalog" class="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 z-10 border-t border-slate-900/60">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+      <div class="max-w-xl text-left">
+        <div class="inline-block text-xs font-bold text-brand-cyan tracking-widest uppercase mb-3 bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/20">
+          Katalog Terpopuler
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Tonton Tayangan Pilihan Terbaik
+        </h2>
+        <p class="text-slate-400 text-base">
+          Mulai jelajahi serial drama yang menduduki peringkat teratas minggu ini. Diperbarui setiap hari dengan takarir bahasa Indonesia yang akurat.
+        </p>
+      </div>
+      
+      <!-- Genre Pills filter -->
+      <div class="flex flex-wrap gap-2 mt-6 md:mt-0 font-semibold text-xs">
+        <button class="bg-brand-cyan text-brand-dark px-4 py-2 rounded-full transition-colors duration-200">Semua</button>
+        <button class="bg-slate-900 border border-slate-800 text-slate-300 hover:text-white px-4 py-2 rounded-full hover:border-slate-700 transition-colors duration-200">Romantis</button>
+        <button class="bg-slate-900 border border-slate-800 text-slate-300 hover:text-white px-4 py-2 rounded-full hover:border-slate-700 transition-colors duration-200">Misteri</button>
+        <button class="bg-slate-900 border border-slate-800 text-slate-300 hover:text-white px-4 py-2 rounded-full hover:border-slate-700 transition-colors duration-200">Fantasi</button>
+      </div>
+    </div>
+    
+    <!-- Drama Poster Cards Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      
+      <!-- Poster 1 -->
+      <div class="group relative bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-cyan-900/20 transition-all duration-500 transform hover:-translate-y-1.5 flex flex-col h-[380px]">
+        <!-- Image placeholder with beautiful CSS gradients simulating drama cover -->
+        <div class="relative w-full h-[260px] bg-gradient-to-t from-slate-950 via-slate-900 to-indigo-900 flex items-center justify-center overflow-hidden">
+          <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-400 via-indigo-900 to-slate-950 group-hover:scale-110 transition-transform duration-500"></div>
+          <span class="text-4xl filter grayscale group-hover:grayscale-0 transition duration-300">🌸</span>
+          
+          <!-- Badges -->
+          <div class="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+            <span class="bg-brand-cyan text-brand-dark text-[9px] font-black tracking-widest px-2.5 py-1 rounded-md uppercase shadow-md">
+              Eksklusif
+            </span>
+          </div>
+          <div class="absolute top-4 right-4 z-10">
+            <span class="bg-black/60 backdrop-blur-md text-brand-yellow text-[10px] font-bold px-2 py-1 rounded-md flex items-center space-x-1 border border-white/10">
+              <span>★</span> <span>4.9</span>
+            </span>
+          </div>
+
+          <!-- Play button hover overlay -->
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-brand-cyan text-brand-dark flex items-center justify-center font-extrabold transform scale-90 group-hover:scale-100 transition-transform duration-300 shadow-lg shadow-cyan-500/50">
+              ▶
+            </div>
+          </div>
+        </div>
+        
+        <!-- Info -->
+        <div class="p-5 flex-1 flex flex-col justify-between bg-slate-900/90 border-t border-slate-800/80">
+          <div>
+            <p class="text-[10px] text-brand-cyan font-bold tracking-widest uppercase mb-1">Romantis • 16 Episode</p>
+            <h3 class="font-extrabold text-white text-base leading-tight group-hover:text-brand-cyan transition-colors duration-200 truncate">
+              Under the Moonlight
+            </h3>
+          </div>
+          <p class="text-xs text-slate-400 line-clamp-1">Kisah cinta rahasia di istana kerajaan Joseon.</p>
+        </div>
+      </div>
+
+      <!-- Poster 2 -->
+      <div class="group relative bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-cyan-900/20 transition-all duration-500 transform hover:-translate-y-1.5 flex flex-col h-[380px]">
+        <div class="relative w-full h-[260px] bg-gradient-to-t from-slate-950 via-slate-900 to-rose-950 flex items-center justify-center overflow-hidden">
+          <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-400 via-purple-900 to-slate-950 group-hover:scale-110 transition-transform duration-500"></div>
+          <span class="text-4xl filter grayscale group-hover:grayscale-0 transition duration-300">⚔️</span>
+          
+          <!-- Badges -->
+          <div class="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+            <span class="bg-brand-yellow text-brand-dark text-[9px] font-black tracking-widest px-2.5 py-1 rounded-md uppercase shadow-md">
+              Terpopuler
+            </span>
+          </div>
+          <div class="absolute top-4 right-4 z-10">
+            <span class="bg-black/60 backdrop-blur-md text-brand-yellow text-[10px] font-bold px-2 py-1 rounded-md flex items-center space-x-1 border border-white/10">
+              <span>★</span> <span>4.8</span>
+            </span>
+          </div>
+
+          <!-- Play button hover overlay -->
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-brand-cyan text-brand-dark flex items-center justify-center font-extrabold transform scale-90 group-hover:scale-100 transition-transform duration-300 shadow-lg shadow-cyan-500/50">
+              ▶
+            </div>
+          </div>
+        </div>
+        
+        <!-- Info -->
+        <div class="p-5 flex-1 flex flex-col justify-between bg-slate-900/90 border-t border-slate-800/80">
+          <div>
+            <p class="text-[10px] text-brand-yellow font-bold tracking-widest uppercase mb-1">Aksi • 12 Episode</p>
+            <h3 class="font-extrabold text-white text-base leading-tight group-hover:text-brand-yellow transition-colors duration-200 truncate">
+              Tomorrow's Promise
+            </h3>
+          </div>
+          <p class="text-xs text-slate-400 line-clamp-1">Perjuangan agen rahasia memecahkan misteri waktu.</p>
+        </div>
+      </div>
+
+      <!-- Poster 3 -->
+      <div class="group relative bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-cyan-900/20 transition-all duration-500 transform hover:-translate-y-1.5 flex flex-col h-[380px]">
+        <div class="relative w-full h-[260px] bg-gradient-to-t from-slate-950 via-slate-900 to-cyan-950 flex items-center justify-center overflow-hidden">
+          <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-teal-400 via-blue-900 to-slate-950 group-hover:scale-110 transition-transform duration-500"></div>
+          <span class="text-4xl filter grayscale group-hover:grayscale-0 transition duration-300">🏢</span>
+          
+          <!-- Badges -->
+          <div class="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+            <span class="bg-brand-cyan text-brand-dark text-[9px] font-black tracking-widest px-2.5 py-1 rounded-md uppercase shadow-md">
+              Eksklusif
+            </span>
+          </div>
+          <div class="absolute top-4 right-4 z-10">
+            <span class="bg-black/60 backdrop-blur-md text-brand-yellow text-[10px] font-bold px-2 py-1 rounded-md flex items-center space-x-1 border border-white/10">
+              <span>★</span> <span>4.7</span>
+            </span>
+          </div>
+
+          <!-- Play button hover overlay -->
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-brand-cyan text-brand-dark flex items-center justify-center font-extrabold transform scale-90 group-hover:scale-100 transition-transform duration-300 shadow-lg shadow-cyan-500/50">
+              ▶
+            </div>
+          </div>
+        </div>
+        
+        <!-- Info -->
+        <div class="p-5 flex-1 flex flex-col justify-between bg-slate-900/90 border-t border-slate-800/80">
+          <div>
+            <p class="text-[10px] text-brand-cyan font-bold tracking-widest uppercase mb-1">Drama • 16 Episode</p>
+            <h3 class="font-extrabold text-white text-base leading-tight group-hover:text-brand-cyan transition-colors duration-200 truncate">
+              The Seoul Chronicle
+            </h3>
+          </div>
+          <p class="text-xs text-slate-400 line-clamp-1">Intrik kekuasaan konglomerat papan atas di ibukota.</p>
+        </div>
+      </div>
+
+      <!-- Poster 4 -->
+      <div class="group relative bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-cyan-900/20 transition-all duration-500 transform hover:-translate-y-1.5 flex flex-col h-[380px]">
+        <div class="relative w-full h-[260px] bg-gradient-to-t from-slate-950 via-slate-900 to-amber-950 flex items-center justify-center overflow-hidden">
+          <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-400 via-orange-950 to-slate-950 group-hover:scale-110 transition-transform duration-500"></div>
+          <span class="text-4xl filter grayscale group-hover:grayscale-0 transition duration-300">🕵️</span>
+          
+          <!-- Badges -->
+          <div class="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+            <span class="bg-indigo-600 text-white text-[9px] font-black tracking-widest px-2.5 py-1 rounded-md uppercase shadow-md">
+              Terbaru
+            </span>
+          </div>
+          <div class="absolute top-4 right-4 z-10">
+            <span class="bg-black/60 backdrop-blur-md text-brand-yellow text-[10px] font-bold px-2 py-1 rounded-md flex items-center space-x-1 border border-white/10">
+              <span>★</span> <span>4.9</span>
+            </span>
+          </div>
+
+          <!-- Play button hover overlay -->
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-brand-cyan text-brand-dark flex items-center justify-center font-extrabold transform scale-90 group-hover:scale-100 transition-transform duration-300 shadow-lg shadow-cyan-500/50">
+              ▶
+            </div>
+          </div>
+        </div>
+        
+        <!-- Info -->
+        <div class="p-5 flex-1 flex flex-col justify-between bg-slate-900/90 border-t border-slate-800/80">
+          <div>
+            <p class="text-[10px] text-slate-400 font-bold tracking-widest uppercase mb-1">Misteri • 10 Episode</p>
+            <h3 class="font-extrabold text-white text-base leading-tight group-hover:text-indigo-400 transition-colors duration-200 truncate">
+              Shadow of Love
+            </h3>
+          </div>
+          <p class="text-xs text-slate-400 line-clamp-1">Misteri pembunuhan berantai yang penuh kejutan.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section id="paket" class="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 z-10 border-t border-slate-900/60">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-block text-xs font-bold text-brand-cyan tracking-widest uppercase mb-3 bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/20">
+        Paket Langganan
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Pilih Paket Langganan VIVA Premium Anda
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg">
+        Tentukan kenyamanan Anda. Dapatkan masa uji coba gratis, batalkan kapan saja dengan mudah.
+      </p>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+      
+      <!-- Basic Card (Gratis Dengan Iklan) -->
+      <div class="group bg-slate-900/40 border border-slate-800/80 p-8 rounded-2xl transition-all duration-300 flex flex-col justify-between h-full relative overflow-hidden">
+        <div>
+          <!-- Title & Sub -->
+          <div class="mb-6">
+            <h3 class="font-extrabold text-white text-xl mb-1">Gratis Dengan Iklan</h3>
+            <p class="text-slate-400 text-sm">Akses standar drama pilihan dengan jeda iklan.</p>
+          </div>
+          
+          <!-- Price -->
+          <div class="mb-8">
+            <span class="text-4xl font-black text-white">Rp 0</span>
+            <span class="text-slate-400 text-sm ml-1">/ selamanya</span>
+          </div>
+          
+          <!-- Features List -->
+          <ul class="space-y-4 mb-8 text-sm text-slate-300">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-emerald-400 mr-3 shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Akses Katalog Drama Standar
+            </li>
+            <li class="flex items-center text-slate-400">
+              <svg class="w-4 h-4 text-slate-500 mr-3 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              Tanpa Iklan Mengganggu (Ada Iklan)
+            </li>
+            <li class="flex items-center text-slate-400">
+              <svg class="w-4 h-4 text-slate-500 mr-3 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              Kualitas Streaming Hingga 4K Ultra HD
+            </li>
+            <li class="flex items-center text-slate-400">
+              <svg class="w-4 h-4 text-slate-500 mr-3 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              Unduh Drama & Nonton Offline
+            </li>
+          </ul>
+        </div>
+        
+        <button class="w-full border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-white font-bold py-3.5 px-4 rounded-xl transition-all duration-300">
+          Mulai Nonton Gratis
+        </button>
+      </div>
+
+      <!-- Premium Card (VIVA Premium Unlimited - Highlighted) -->
+      <div class="group bg-slate-900/80 border-2 border-brand-yellow p-8 rounded-2xl transition-all duration-300 flex flex-col justify-between h-full relative overflow-hidden shadow-2xl" style="box-shadow: 0 0 40px rgba(250, 204, 21, 0.1);">
+        
+        <!-- Popular Badge -->
+        <div class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-xs font-black tracking-widest px-4 py-1.5 rounded-bl-xl uppercase">
+          Terpopuler
+        </div>
+
+        <div>
+          <!-- Title & Sub -->
+          <div class="mb-6">
+            <h3 class="font-extrabold text-white text-xl mb-1 flex items-center">
+              VIVA Premium Unlimited
+              <span class="ml-2 text-xs bg-brand-cyan/20 text-brand-cyan px-2 py-0.5 rounded font-bold uppercase">Pro</span>
+            </h3>
+            <p class="text-slate-300 text-sm">Akses penuh tanpa batas, resolusi maksimal, tanpa iklan.</p>
+          </div>
+          
+          <!-- Price -->
+          <div class="mb-8">
+            <div class="flex items-baseline">
+              <span class="text-4xl font-black text-brand-yellow">Rp 29.000</span>
+              <span class="text-slate-300 text-sm ml-1.5">/ bulan</span>
+            </div>
+            <p class="text-xs text-brand-cyan font-semibold mt-1">Uji coba gratis 7 hari pertama</p>
+          </div>
+          
+          <!-- Features List -->
+          <ul class="space-y-4 mb-8 text-sm text-slate-200">
+            <li class="flex items-center font-semibold text-white">
+              <svg class="w-4 h-4 text-brand-yellow mr-3 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              Akses Semua Drama & Konten Eksklusif
+            </li>
+            <li class="flex items-center font-semibold text-white">
+              <svg class="w-4 h-4 text-brand-yellow mr-3 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              Nonton Sepenuhnya Tanpa Gangguan Iklan
+            </li>
+            <li class="flex items-center font-semibold text-white">
+              <svg class="w-4 h-4 text-brand-yellow mr-3 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              Kualitas Gambar 4K Ultra HD & Dolby Atmos
+            </li>
+            <li class="flex items-center font-semibold text-white">
+              <svg class="w-4 h-4 text-brand-yellow mr-3 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              Download Offline & Nonton Di Mana Saja
+            </li>
+            <li class="flex items-center font-semibold text-white">
+              <svg class="w-4 h-4 text-brand-yellow mr-3 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              Akses Perangkat Simultan (Hingga 4 Layar)
+            </li>
+          </ul>
+        </div>
+        
+        <button class="w-full bg-brand-yellow hover:bg-yellow-400 text-brand-dark font-black py-4 px-4 rounded-xl transition-all duration-300 shadow-glow-yellow hover:shadow-yellow-400/40 transform hover:-translate-y-0.5">
+          Coba Gratis 7 Hari & Berlangganan
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ SECTION (Accordion) -->
+  <section id="faq" class="relative max-w-4xl mx-auto px-6 py-24 z-10 border-t border-slate-900/60">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold text-brand-cyan tracking-widest uppercase mb-3 bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/20">
+        Pertanyaan Umum
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Ada Pertanyaan? Kami Punya Jawabannya
+      </h2>
+      <p class="text-slate-400 text-base">
+        Informasi cepat mengenai pembayaran, pembatalan paket, dan detail teknis streaming VIVA.
+      </p>
+    </div>
+
+    <!-- FAQ Wrapper -->
+    <div class="space-y-4">
+      
+      <!-- FAQ Item 1 -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-white text-base sm:text-lg">Apakah saya bisa membatalkan langganan VIVA Premium kapan saja?</span>
+          <span class="faq-icon w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-brand-cyan text-sm font-bold transition-transform duration-300 shrink-0 ml-4">+</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 mt-3">
+            Ya, tentu saja. Langganan VIVA bersifat non-kontrak. Anda dapat membatalkan paket VIVA Premium Unlimited kapan saja melalui pengaturan akun tanpa adanya biaya pembatalan tambahan. Akses premium Anda akan tetap aktif sampai masa tagihan berjalan berakhir.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-white text-base sm:text-lg">Perangkat apa saja yang didukung oleh layanan VIVA?</span>
+          <span class="faq-icon w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-brand-cyan text-sm font-bold transition-transform duration-300 shrink-0 ml-4">+</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 mt-3">
+            VIVA mendukung berbagai perangkat modern. Anda dapat menonton melalui Smart TV (Android TV, Samsung Tizen, LG WebOS), smartphone dan tablet (Android & iOS), laptop/komputer melalui browser web populer, serta perangkat streaming seperti Chromecast dan Apple TV.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-white text-base sm:text-lg">Bagaimana cara kerja masa uji coba gratis 7 hari?</span>
+          <span class="faq-icon w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-brand-cyan text-sm font-bold transition-transform duration-300 shrink-0 ml-4">+</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 mt-3">
+            Saat mendaftar paket VIVA Premium Unlimited pertama kali, Anda tidak akan dikenakan biaya selama 7 hari pertama. Jika Anda merasa puas dengan layanan kami, langganan akan dilanjutkan otomatis seharga Rp 29.000/bulan. Pembatalan sebelum hari ke-7 tidak akan dikenakan biaya sepeser pun.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-white text-base sm:text-lg">Apakah kualitas 4K UHD tersedia untuk semua konten drama?</span>
+          <span class="faq-icon w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-brand-cyan text-sm font-bold transition-transform duration-300 shrink-0 ml-4">+</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 mt-3">
+            Sebagian besar judul drama terbaru dan eksklusif kami sudah mendukung resolusi 4K UHD. Untuk konten lama, kami menyediakan pemutaran berkualitas Full HD 1080p yang dioptimalkan secara dinamis untuk menghemat kuota internet Anda tanpa mengurangi kejernihan visual.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative bg-brand-darker border-t border-slate-900 text-slate-400 z-10 pt-20 pb-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+      
+      <!-- Footer Left (Logo & Desc) -->
+      <div class="md:col-span-4 space-y-6">
+        <a href="#" class="flex items-center space-x-1 focus:outline-none">
+          <span class="text-3xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan to-brand-yellow">VIVA</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-yellow"></span>
+        </a>
+        <p class="text-sm leading-relaxed">
+          VIVA adalah platform streaming drama premium berlisensi resmi. Kami berkomitmen menyajikan hiburan terbaik tanpa jeda iklan dengan kualitas tayangan ultra jernih demi kepuasan menonton Anda.
+        </p>
+        <div class="flex space-x-4">
+          <!-- Social Icons Mockup -->
+          <a href="#" class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-white hover:border-brand-cyan hover:text-brand-cyan transition duration-200">
+            F
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-white hover:border-brand-cyan hover:text-brand-cyan transition duration-200">
+            T
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-white hover:border-brand-cyan hover:text-brand-cyan transition duration-200">
+            I
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Mid (Links Grid) -->
+      <div class="md:col-span-4 grid grid-cols-2 gap-8">
+        <div>
+          <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-4">Navigasi</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="#fitur" class="hover:text-white transition-colors">Fitur Utama</a></li>
+            <li><a href="#katalog" class="hover:text-white transition-colors">Katalog Drama</a></li>
+            <li><a href="#paket" class="hover:text-white transition-colors">Paket Premium</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-4">Dukungan</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Hubungi Kami</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Right (Newsletter Form) -->
+      <div class="md:col-span-4 space-y-4">
+        <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">Langganan Buletin</h4>
+        <p class="text-sm leading-relaxed text-slate-400">
+          Dapatkan informasi drama terbaru yang akan rilis serta promo paket langganan menarik langsung di email Anda.
+        </p>
+        
+        <form class="space-y-2.5" onsubmit="event.preventDefault(); alert('Terima kasih! Email Anda telah terdaftar.');">
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="email" placeholder="Alamat email Anda" required class="flex-1 px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan text-sm transition-colors duration-200">
+            <button type="submit" class="bg-brand-cyan hover:bg-cyan-400 text-brand-dark px-5 py-3 rounded-xl font-bold text-sm tracking-wide transition-colors duration-200 shrink-0">
+              Daftar
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-8 border-t border-slate-900/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+      <p>&copy; 2026 VIVA Streaming. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+      <p class="mt-2 sm:mt-0">Didesain dengan Cinta &amp; Kemewahan.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT FOR DYNAMIC INTERACTIONS -->
+  <script>
+    // 1. Mobile Menu Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenu.classList.toggle('hidden');
+      if (isExpanded) {
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      } else {
+        hamburgerIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      }
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+
+    // 2. FAQ Accordion Logic
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const icon = toggle.querySelector('.faq-icon');
+        const card = toggle.parentElement;
+
+        // Toggle visibility
+        if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+          content.style.maxHeight = '0px';
+          icon.textContent = '+';
+          icon.classList.remove('rotate-45');
+          card.classList.remove('bg-slate-900/80', 'border-brand-cyan/30');
+          card.classList.add('bg-slate-900/40', 'border-slate-800');
+        } else {
+          // Close other opened FAQs (optional but nice)
+          faqToggles.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+              const otherContent = otherToggle.nextElementSibling;
+              const otherIcon = otherToggle.querySelector('.faq-icon');
+              const otherCard = otherToggle.parentElement;
+              otherContent.style.maxHeight = '0px';
+              otherIcon.textContent = '+';
+              otherIcon.classList.remove('rotate-45');
+              otherCard.classList.remove('bg-slate-900/80', 'border-brand-cyan/30');
+              otherCard.classList.add('bg-slate-900/40', 'border-slate-800');
+            }
+          });
+
+          // Open current FAQ
+          content.style.maxHeight = content.scrollHeight + 'px';
+          icon.textContent = '−';
+          icon.classList.add('rotate-45');
+          card.classList.add('bg-slate-900/80', 'border-brand-cyan/30');
+          card.classList.remove('bg-slate-900/40', 'border-slate-800');
+        }
+      });
+    });
+
+    // 3. Navbar scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('shadow-xl', 'bg-brand-dark/95', 'py-3');
+        nav.classList.remove('py-4', 'bg-brand-dark/80');
+      } else {
+        nav.classList.remove('shadow-xl', 'bg-brand-dark/95', 'py-3');
+        nav.classList.add('py-4', 'bg-brand-dark/80');
+      }
+    });
+  </script>
+
+</body>
+</html>
